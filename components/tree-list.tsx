@@ -9,10 +9,11 @@ import treeData from "../public/data/tree-data.json"
 import Image from "next/image"
 import { Tree } from "@/types/tree"
 import { Building } from "@/types/buildings"
+import { useSearchParams } from 'next/navigation'
+import { cn } from "@/lib/utils"
+import { useWindowDimensions } from "@/hooks/useWindowDimensions"
 
 const trees: Tree[] = JSON.parse(JSON.stringify(treeData))
-
-const ITEMS_PER_PAGE = 6
 
 const generatePagination = (currentPage: number, totalPages: number) => {
   if (totalPages <= 5) {
@@ -41,9 +42,17 @@ const generatePagination = (currentPage: number, totalPages: number) => {
 };
 
 const TreeList = () => {
+
+  const { width } = useWindowDimensions()
+  const ITEMS_PER_PAGE = width > 768 ? 6 : 3
+  
+  const searchParams = useSearchParams()
+  const name = searchParams.get('name')
+
   const [filter, setFilter] = useState<typeof Building | 'All' | undefined>()
-  const [searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, setSearchQuery] = useState(name || "")
   const [currentPage, setCurrentPage] = useState(1)
+  const [isLoading, setIsLoading] = useState(true)
 
   const filteredTrees = trees
     .filter((tree) => {
@@ -51,18 +60,21 @@ const TreeList = () => {
       const nameMatch = tree.Name.toLowerCase().includes(searchQuery.toLowerCase())
       return locationMatch && nameMatch
     })
-  
+
   const totalPages = Math.ceil(filteredTrees.length / ITEMS_PER_PAGE)
   const pageStart = (currentPage - 1) * ITEMS_PER_PAGE
   const currentTrees = filteredTrees.slice(pageStart, pageStart + ITEMS_PER_PAGE)
-  
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl mt-5 font-bold mb-6">พรรณไม้ในเตรียมอุดมศึกษา</h1>
       <div className="mb-4 w-full flex">
-        <Select onValueChange={(value) => setFilter(value as typeof Building | 'All')}>
+        <Select
+          defaultValue="All"
+          onValueChange={(value) => setFilter(value as typeof Building | 'All')}
+        >
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="กรองตามตึกเรียน" />
+            <SelectValue />
           </SelectTrigger>
           <SelectContent>
             <SelectItem key="All" value="All">
@@ -87,13 +99,20 @@ const TreeList = () => {
           <Card key={tree.id} className="flex flex-col">
             <CardHeader>
               <div className="flex items-center space-x-4">
-                <Image
-                  src={tree.Image}
-                  alt={tree.Name}
-                  width={100}
-                  height={100}
-                  className="rounded-full w-[100px] h-[100px]"
-                />
+                <div className="w-[100px] h-[100px] relative">
+                  <Image
+                    key={tree.id}
+                    src={tree.Image || "https://placehold.co/100x100/png"}
+                    alt={tree.Name}
+                    onLoad={() => setIsLoading(false)}
+                    width={100}
+                    height={100}
+                    className={cn(
+                      "rounded-full w-[100px] max-w-[100px] h-[100px] max-h-[100px] shadow-2xl",
+                      isLoading ? "opacity-0" : "opacity-100 transition-opacity duration-200",
+                    )}
+                  />
+                </div>
                 <div>
                   <CardTitle className="text-2xl">{tree.Name}</CardTitle>
                   <CardDescription className="text-lg">{tree.Science_Name}</CardDescription>
@@ -101,7 +120,9 @@ const TreeList = () => {
               </div>
             </CardHeader>
             <CardContent className="flex-grow">
-              <p>{tree.Description}</p>
+              {tree.AKA && <p><strong>ชื่อท้องถิ่น :</strong> {String(tree.AKA)}</p>}
+              <p><strong>สถานที่ :</strong> {String(tree.Building)}</p>
+              <p className="mt-3">{tree.Description}</p>
             </CardContent>
           </Card>
         ))}

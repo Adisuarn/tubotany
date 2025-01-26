@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card"
 import treeData from '@/public/data/tree-data.json'
 import { Tree } from '@/types/tree'
+import Link from 'next/link'
 
 type Props = {
   amount: number
@@ -41,7 +42,16 @@ const RandomBotany = ({ amount }: Props) => {
               </CardDescription>
             </CardContent>
             <div className="items-center opacity-0 group-hover:opacity-100 hidden group-hover:flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500">
-              <Button className="px-3 py-2 bg-[#AD8B73] text-[#E3CAA5] rounded-2xl hover:bg-[#967E76] transform group-hover:scale-105 transition-all duration-300">ดูเพิ่มเติม</Button>
+              <Button
+                className="px-3 py-2 bg-[#AD8B73] text-[#E3CAA5] rounded-2xl hover:bg-[#967E76] transform group-hover:scale-105 transition-all duration-300"
+                asChild
+              >
+                <Link
+                  href={`/trees?name=${tree.Name}`}
+                >
+                  ดูเพิ่มเติม
+                </Link>
+              </Button>
             </div>
           </Card>
         ))}

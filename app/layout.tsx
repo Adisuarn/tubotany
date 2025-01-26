@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import { Geist, Noto_Sans_Thai } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster"
+import { seo } from "@/lib/seo";
 import Header from "@/components/navbar/header";
 import Footer from "@/components/footer";
-import { seo } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({

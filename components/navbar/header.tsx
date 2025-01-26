@@ -11,29 +11,27 @@ import Link from 'next/link';
 const Header = () => {
   return (
     <header className="h-[60px] flex items-center bg-[#AD8B73]">
-      <nav className="w-full">
+      <nav className="w-full mx-5">
         <ul className="w-full flex">
-          <div className="flex w-full justify-between items-center">
-            <div className="flex items-center w-full">
-              <div
-                className="hover:scale-105 transition-transform duration-200 px-3 font-bold flex items-center text-center text-[#E3CAA5]"
+          <div className="flex w-full justify-evenly items-center">
+            <div
+              className="hover:scale-105 transition-transform duration-200 px-3 font-bold flex items-center text-center text-[#E3CAA5]"
+            >
+              <Link
+                className="hidden md:flex flex-col mr-5"
+                href='/'
               >
-                <Link
-                  className="hidden md:flex flex-col mr-5"
-                  href='/'
-                >
-                  <p>TU</p>
-                  <p>BOTANY</p>
-                </Link>
-                <Link
-                  href='/'
-                >
-                  <Leaf />
-                </Link>
-              </div>
-              <div className="w-full space-x-10 flex justify-center">
-                <Navigation />
-              </div>
+                <p>TU</p>
+                <p>BOTANY</p>
+              </Link>
+              <Link
+                href='/'
+              >
+                <Leaf />
+              </Link>
+            </div>
+            <div className="w-full flex justify-center md:justify-normal">
+              <Navigation />
             </div>
             <div className="px-3 text-center">
               <HoverCard>

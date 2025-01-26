@@ -11,23 +11,23 @@ interface TeamMember {
 const team: TeamMember[] = [
   {
     name: "อดิศวร วุฒิกุล",
-    role: "Roles",
-    instagram: "https://example.com",
+    role: "ผู้จัดทำเว็บไซต์",
+    instagram: "https://instagram.com/adisuarn",
   },
   {
     name: "จารุเดช ต่อเติมทรัพย์",
-    role: "Roles",
-    instagram: "https://example.com",
+    role: "ผู้สืบค้นข้อมูล",
+    instagram: "https://instagram.com/sunsaansan",
   },
   {
-    name: "สุริยะ",
-    role: "Roles",
-    instagram: "https://example.com",
+    name: "วีรภัทร สุริยะ",
+    role: "ผู้สรุปข้อมูล",
+    instagram: "https://instagram.com/petesuriya",
   },
   {
-    name: "ปีเก้",
-    role: "Roles",
-    instagram: "https://example.com",
+    name: "ศิรเศษฐ์ ตันจิตตสุวรรณ",
+    role: "ผู้ตรวจสอบความถูกต้อง",
+    instagram: "https://instagram.com/piquelnwza005x",
   }
 ]
 
@@ -50,7 +50,10 @@ export default function Footer() {
                 </div>
                 <div className="flex space-x-4">
                   {member.instagram && (
-                    <Link href={member.instagram} className="text-custom-cream hover:text-custom-tan transition-colors duration-200">
+                    <Link
+                      target="_blank"
+                      href={member.instagram}
+                      className="text-custom-cream hover:text-custom-tan transition-colors duration-200">
                       <Instagram className="h-5 w-5" />
                     </Link>
                   )}

@@ -3,6 +3,7 @@ import { Book, Video, FileText, LinkIcon } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
+import * as motion from "motion/react-client";
 import Link from "next/link"
 
 const resources = [
@@ -40,7 +41,13 @@ const getIcon = (type: string) => {
 
 export function EducationalResources() {
   return (
-    <section className="w-full">
+    <motion.section
+      className="w-full"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="container px-4 md:px-6">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-8">แหล่งความรู้เพิ่มเติม</h2>
         <Card className="w-full max-w-3xl mx-auto">
@@ -76,7 +83,7 @@ export function EducationalResources() {
           </CardContent>
         </Card>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

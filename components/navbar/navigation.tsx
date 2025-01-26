@@ -30,10 +30,14 @@ export const Navigation = () => {
         {navItems.map((item, index) => (
           <li key={index} className="mx-4">
             <Link
-              className={`${pathname === item.href ? 'text-[#E3CAA5] font-extrabold' : 'text-[#E3CAA5]'} hover:font-semibold hover:text-[#E3CAA5] transition-all duration-300`}
+              className={`${pathname === item.href
+                  ? 'text-[#E3CAA5] font-extrabold'
+                  : 'text-[#E3CAA5] hover:font-semibold hover:text-[#E3CAA5]'
+                } transition-all duration-300`}
               href={item.href}
+              onClick={(e) => pathname === item.href && e.preventDefault()}
             >
-                {item.label}
+              {item.label}
             </Link>
           </li>
         ))}

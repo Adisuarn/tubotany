@@ -1,16 +1,15 @@
-"use client"
+'use client'
 
-import { useWindowDimensions } from '@/hooks/useWindowDimensions';
-import RandomBotany from '@/components/random-botany';
-import { cn } from '@/lib/utils';
+import RandomBotany from '@/components/random-botany'
+import { useWindowDimensions } from '@/hooks/useWindowDimensions'
+import { cn } from '@/lib/utils'
 
 const RightAsideBotany = ({ className }: { className?: string }) => {
+  const { width } = useWindowDimensions()
+  const amount = width > 768 ? 4 : 2
 
-  const { width } = useWindowDimensions();
-  const amount = width > 768 ? 4 : 2;
-  
   return (
-    <aside className={cn(className, 'w-5/12 flex justify-center')}>
+    <aside className={cn(className, 'flex w-5/12 justify-center')}>
       <RandomBotany amount={amount} />
     </aside>
   )

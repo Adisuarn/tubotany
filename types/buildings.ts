@@ -5,5 +5,5 @@ export const Building = {
   Building9: 'ตึก 9',
   Building55: 'ตึก 55 ปี',
   Building60: 'ตึก 60 ปี',
-  BuildingLadyRung: 'ตึกคุณหญิงหรั่ง กันตารัติ'
+  BuildingLadyRung: 'ตึกคุณหญิงหรั่ง กันตารัติ',
 }

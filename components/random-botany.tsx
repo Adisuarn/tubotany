@@ -1,15 +1,11 @@
-import React from 'react'
-import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardTitle,
-} from "@/components/ui/card"
+import Link from 'next/link'
+import React from 'react'
+
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
 import treeData from '@/public/data/tree-data.json'
 import { Tree } from '@/types/tree'
-import Link from 'next/link'
 
 type Props = {
   amount: number
@@ -29,28 +25,35 @@ const randomTreeData = (amount: number) => {
 const RandomBotany = ({ amount }: Props) => {
   return (
     <div className="md:w-[80%]">
-      <div className="w-full flex flex-col items-center md:grid md:grid-cols-2 md:gap-5">
+      <div className="flex w-full flex-col items-center md:grid md:grid-cols-2 md:gap-5">
         {randomTreeData(amount).map((tree, index) => (
-          <Card key={index} className="w-full relative flex flex-col items-center justify-between p-5 border rounded-2xl my-2 group hover:bg-black/10 transition-all duration-300">
+          <Card
+            key={index}
+            className="group relative my-2 flex w-full flex-col items-center justify-between rounded-2xl border p-5 transition-all duration-300 hover:bg-black/10"
+          >
             <CardContent className="flex flex-col items-center">
-              <Image src={"https://placehold.co/150/png"} alt={tree.Name} width={150} height={150} className="w-14 h-14 rounded-full" />
+              <Image
+                src={'https://placehold.co/150/png'}
+                alt={tree.Name}
+                width={150}
+                height={150}
+                className="h-14 w-14 rounded-full"
+              />
               <CardTitle>
-                <h1 className="mt-5 font-bold text-center">{tree.Name}</h1>
+                <h1 className="mt-5 text-center font-bold">{tree.Name}</h1>
               </CardTitle>
               <CardDescription className="text-center">
-                <p className="mt-2 text-center">{(tree.Science_Name && tree.Science_Name !== '-') ? `${tree.Science_Name}` : ''}</p>
+                <p className="mt-2 text-center">
+                  {tree.Science_Name && tree.Science_Name !== '-' ? `${tree.Science_Name}` : ''}
+                </p>
               </CardDescription>
             </CardContent>
-            <div className="items-center opacity-0 group-hover:opacity-100 hidden group-hover:flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500">
+            <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 transform items-center opacity-0 transition-all duration-500 group-hover:flex group-hover:opacity-100">
               <Button
-                className="px-3 py-2 bg-[#AD8B73] text-[#E3CAA5] rounded-2xl hover:bg-[#967E76] transform group-hover:scale-105 transition-all duration-300"
+                className="transform rounded-2xl bg-[#AD8B73] px-3 py-2 text-[#E3CAA5] transition-all duration-300 hover:bg-[#967E76] group-hover:scale-105"
                 asChild
               >
-                <Link
-                  href={`/trees?name=${tree.Name}`}
-                >
-                  ดูเพิ่มเติม
-                </Link>
+                <Link href={`/trees?name=${tree.Name}`}>ดูเพิ่มเติม</Link>
               </Button>
             </div>
           </Card>

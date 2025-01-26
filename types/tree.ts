@@ -1,4 +1,4 @@
-import { Building } from "@/types/buildings"
+import { Building } from '@/types/buildings'
 
 export interface Tree {
   id: number

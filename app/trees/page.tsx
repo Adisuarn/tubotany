@@ -1,4 +1,4 @@
-import TreeList from "@/components/tree-list"
+import TreeList from '@/components/tree-list'
 
 const Trees = () => {
   return (

@@ -1,36 +1,36 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
       {
-        protocol: "https",
+        protocol: 'https',
         hostname: 'placehold.co',
-        port: ''
+        port: '',
       },
       {
-        protocol: "https",
+        protocol: 'https',
         hostname: 'images.app.goo.gl',
-        port: ''
+        port: '',
       },
       {
-        protocol: "https",
+        protocol: 'https',
         hostname: 'www.disthai.com',
-        port: ''
+        port: '',
       },
       {
-        protocol: "https",
+        protocol: 'https',
         hostname: 'upload.wikimedia.org',
-        port: ''
+        port: '',
       },
       {
-        protocol: "https",
+        protocol: 'https',
         hostname: 'kaset.today',
-        port: ''
-      }
-    ]
-  }
-};
+        port: '',
+      },
+    ],
+  },
+}
 
-export default nextConfig;
+export default nextConfig

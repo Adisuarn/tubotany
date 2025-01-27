@@ -33,7 +33,7 @@ const RandomBotany = ({ amount }: Props) => {
           >
             <CardContent className="flex flex-col items-center">
               <Image
-                src={'https://placehold.co/150/png'}
+                src={tree.Image}
                 alt={tree.Name}
                 width={150}
                 height={150}

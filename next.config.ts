@@ -6,29 +6,12 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'placehold.co',
-        port: '',
+        hostname: '**',
       },
       {
-        protocol: 'https',
-        hostname: 'images.app.goo.gl',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.disthai.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'upload.wikimedia.org',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'kaset.today',
-        port: '',
-      },
+        protocol: "http",
+        hostname: "**",
+      }
     ],
   }
 }
